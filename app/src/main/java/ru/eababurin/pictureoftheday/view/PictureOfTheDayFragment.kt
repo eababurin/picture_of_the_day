@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +16,8 @@ import ru.eababurin.pictureoftheday.R
 import ru.eababurin.pictureoftheday.databinding.FragmentPictureBinding
 import ru.eababurin.pictureoftheday.viewmodel.AppState
 import ru.eababurin.pictureoftheday.viewmodel.PictureOfTheDayViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
@@ -70,15 +71,15 @@ class PictureOfTheDayFragment : Fragment() {
         })
 
         binding.chipToday.setOnClickListener {
-            Toast.makeText(requireContext(), "chipToday", Toast.LENGTH_SHORT).show()
+            viewModel.sendRequest()
         }
 
         binding.chipYesterday.setOnClickListener {
-            Toast.makeText(requireContext(), "chipYesterday", Toast.LENGTH_SHORT).show()
+            viewModel.sendRequestByDate(requireDate((-1)))
         }
 
         binding.chipBeforeYesterday.setOnClickListener {
-            Toast.makeText(requireContext(), "chipBeforeYesterday", Toast.LENGTH_SHORT).show()
+            viewModel.sendRequestByDate(requireDate((-2)))
         }
 
         binding.inputLayout.setEndIconOnClickListener {
@@ -86,6 +87,12 @@ class PictureOfTheDayFragment : Fragment() {
                 data = Uri.parse("https://en.wikipedia.org/wiki/${binding.input.text.toString()}")
             })
         }
+    }
+
+    private fun requireDate(offset: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DATE, offset)
+        return SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.time).toString()
     }
 
     private fun renderData(appState: AppState) {
