@@ -1,9 +1,23 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.PictureOfTheDay" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">#FF0000</item>
+        <item name="colorOnSurface">#FF0000</item>
+        <item name="colorPrimaryContainer">#FF0000</item>
+        <item name="colorOnSecondaryContainer">#FF0000</item>
+        <item name="chipStyle">@style/MyChipStyle</item>
+
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!--        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>-->
     </style>
 
     <style name="Theme.PictureOfTheDay" parent="Base.Theme.PictureOfTheDay" />
+
+    <style name="MyChipStyle" parent="Widget.Material3.Chip.Suggestion">
+        <item name="chipBackgroundColor">@drawable/my_selector_backgroundchip</item>
+    </style>
 </resources>

@@ -1,5 +1,3 @@
 package ru.eababurin.pictureoftheday.model
 
-interface Repository {
-
-}
+interface Repository

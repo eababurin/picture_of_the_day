@@ -6,6 +6,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.eababurin.pictureoftheday.BuildConfig
+import ru.eababurin.pictureoftheday.R
 import ru.eababurin.pictureoftheday.model.PictureOfTheDayResponseData
 import ru.eababurin.pictureoftheday.model.RepositoryImpl
 
@@ -24,7 +25,7 @@ class PictureOfTheDayViewModel(
             .enqueue(callback)
     }
 
-    val callback = object : Callback<PictureOfTheDayResponseData> {
+    private val callback = object : Callback<PictureOfTheDayResponseData> {
         override fun onResponse(
             call: Call<PictureOfTheDayResponseData>,
             response: Response<PictureOfTheDayResponseData>
@@ -32,14 +33,11 @@ class PictureOfTheDayViewModel(
             if (response.isSuccessful) {
                 liveData.postValue(AppState.Success(response.body()!!))
             } else {
-                liveData.postValue(AppState.Error(throw IllegalStateException("что то пошло не так")))
+                liveData.postValue(AppState.Error(throw IllegalStateException(R.string.error.toString())))
             }
         }
 
-        override fun onFailure(call: Call<PictureOfTheDayResponseData>, t: Throwable) {
-//            TODO HW
-        }
-
+        override fun onFailure(call: Call<PictureOfTheDayResponseData>, t: Throwable) {}
     }
 
 }

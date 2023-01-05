@@ -4,7 +4,7 @@ package ru.eababurin.pictureoftheday.model
 import com.google.gson.annotations.SerializedName
 
 data class PictureOfTheDayResponseData(
-    @SerializedName("copyright") // по сути не нужны, потому как точно совпадают с именем переменной
+    @SerializedName("copyright")
     val copyright: String,
     @SerializedName("date")
     val date: String,
@@ -12,7 +12,7 @@ data class PictureOfTheDayResponseData(
     val explanation: String,
     @SerializedName("hdurl")
     val hdurl: String,
-    @SerializedName("media_type") // а тут нужен
+    @SerializedName("media_type")
     val mediaType: String,
     @SerializedName("service_version")
     val serviceVersion: String,
