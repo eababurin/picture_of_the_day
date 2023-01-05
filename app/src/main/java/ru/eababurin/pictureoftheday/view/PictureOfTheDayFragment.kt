@@ -83,7 +83,7 @@ class PictureOfTheDayFragment : Fragment() {
 
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://ru.wikipedia.org/wiki/${binding.input.text.toString()}")
+                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.input.text.toString()}")
             })
         }
     }
