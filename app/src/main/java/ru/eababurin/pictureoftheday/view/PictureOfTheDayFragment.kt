@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -97,16 +98,28 @@ class PictureOfTheDayFragment : Fragment() {
 
     private fun renderData(appState: AppState) {
         when (appState) {
-            is AppState.Error -> { /*TODO HW*/
+            is AppState.Error -> {
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.imageView.visibility = View.VISIBLE
+                binding.imageView.setImageResource(R.drawable.ic_no_image)
+                Toast.makeText(
+                    requireActivity(),
+                    appState.error.message.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             is AppState.Success -> {
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.imageView.visibility = View.VISIBLE
                 binding.imageView.load(appState.pictureOfTheDayResponseData.url)
                 requireView().findViewById<TextView>(R.id.bottom_sheet_description_header).text =
                     appState.pictureOfTheDayResponseData.title
                 requireView().findViewById<TextView>(R.id.bottom_sheet_description).text =
                     appState.pictureOfTheDayResponseData.explanation
             }
-            AppState.Loading -> { /*TODO HW*/
+            AppState.Loading -> {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.imageView.visibility = View.INVISIBLE
             }
         }
     }
