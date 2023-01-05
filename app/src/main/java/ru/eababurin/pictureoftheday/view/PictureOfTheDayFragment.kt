@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -92,9 +93,11 @@ class PictureOfTheDayFragment : Fragment() {
             is AppState.Error -> { /*TODO HW*/
             }
             is AppState.Success -> {
-                binding.imageView.load(appState.pictureOfTheDayResponseData.url) {
-                    // TODO HW настроить загрузку изображения placeholder() error()
-                }
+                binding.imageView.load(appState.pictureOfTheDayResponseData.url)
+                requireView().findViewById<TextView>(R.id.bottom_sheet_description_header).text =
+                    appState.pictureOfTheDayResponseData.title
+                requireView().findViewById<TextView>(R.id.bottom_sheet_description).text =
+                    appState.pictureOfTheDayResponseData.explanation
             }
             AppState.Loading -> { /*TODO HW*/
             }
