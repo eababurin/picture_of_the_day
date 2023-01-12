@@ -49,7 +49,7 @@ class PictureOfTheDayFragment : Fragment() {
 
         viewModel.getLiveData().observe(viewLifecycleOwner) { appState -> renderData(appState) }
 
-        viewModel.sendRequestByDate(requireDate((0)))
+        viewModel.sendRequest(requireDate((0)))
         binding.chipToday.isChecked = true
 
         bottomSheetBehavior.addBottomSheetCallback(object :
@@ -77,27 +77,27 @@ class PictureOfTheDayFragment : Fragment() {
         })
 
         binding.chipToday.setOnClickListener {
-            viewModel.sendRequestByDate(requireDate((TODAY)))
+            viewModel.sendRequest(requireDate((TODAY)))
         }
 
         binding.chipYesterday.setOnClickListener {
-            viewModel.sendRequestByDate(requireDate((YESTERDAY)))
+            viewModel.sendRequest(requireDate((YESTERDAY)))
         }
 
         binding.chipBeforeYesterday.setOnClickListener {
-            viewModel.sendRequestByDate(requireDate((BEFORE_YESTERDAY)))
+            viewModel.sendRequest(requireDate((BEFORE_YESTERDAY)))
         }
 
         binding.chipHd.setOnClickListener {
             when (binding.chipGroup.checkedChipId) {
                 binding.chipToday.id -> {
-                    viewModel.sendRequestByDate(requireDate(TODAY))
+                    viewModel.sendRequest(requireDate(TODAY))
                 }
                 binding.chipYesterday.id -> {
-                    viewModel.sendRequestByDate(requireDate(YESTERDAY))
+                    viewModel.sendRequest(requireDate(YESTERDAY))
                 }
                 binding.chipBeforeYesterday.id -> {
-                    viewModel.sendRequestByDate(requireDate(BEFORE_YESTERDAY))
+                    viewModel.sendRequest(requireDate(BEFORE_YESTERDAY))
                 }
             }
         }
@@ -131,7 +131,7 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.imageView.visibility = View.VISIBLE
 
-                if (binding.chipHd.isChecked) {
+                if (!binding.chipHd.isChecked) {
                     binding.imageView.load(appState.pictureOfTheDayResponseData.url)
                 } else {
                     binding.imageView.load(appState.pictureOfTheDayResponseData.hdurl)
