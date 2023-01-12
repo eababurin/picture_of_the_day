@@ -1,3 +1,16 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="image_view_margin">10dp</dimen>
+    <dimen name="bottom_sheet_margin">5dp</dimen>
+
+    <dimen name="recommended_min_height">32dp</dimen>
+    <dimen name="recommended_min_width">40dp</dimen>
+    <dimen name="recommended_padding_horizontal">4dp</dimen>
+    <dimen name="recommended_padding_vertical">8dp</dimen>
+    <dimen name="text_padding_horizontal">10dp</dimen>
+
+    <dimen name="height_of_the_visible_bottom_sheet">50dp</dimen>
+
+    <dimen name="view_width">25dp</dimen>
+    <dimen name="view_height">1dp</dimen>
 </resources>

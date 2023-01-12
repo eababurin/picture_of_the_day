@@ -8,4 +8,7 @@
     <color name="color_gray">#66000000</color>
     <color name="colorPrimary">#FF6200EE</color>
     <color name="colorAccent">#FF03DAC5</color>
+
+    <color name="bottom_sheet_background_color">#f6f6fa</color>
+    <color name="view_background_color">#663b4351</color>
 </resources>
