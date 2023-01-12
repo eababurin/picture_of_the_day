@@ -10,6 +10,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_wiki"
+            android:minWidth="40dp"
+            android:minHeight="32dp"
+            android:paddingLeft="4dp"
+            android:paddingTop="8dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="8dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:endIconDrawable="@drawable/ic_wikipedia"
+            app:endIconMode="custom"
+            app:helperText="@string/wiki_helper_text"
+            app:helperTextEnabled="true"
+            app:layout_anchor="@id/chip_group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
             android:layout_width="wrap_content"
@@ -21,7 +50,7 @@
             android:paddingRight="4dp"
             android:paddingBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputLayout"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
@@ -65,35 +94,32 @@
 
         </com.google.android.material.chip.ChipGroup>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout"
-            android:layout_width="match_parent"
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/search_wiki"
-            android:hint="@string/search_wiki"
             android:minWidth="40dp"
             android:minHeight="32dp"
             android:paddingLeft="4dp"
             android:paddingTop="8dp"
             android:paddingRight="4dp"
             android:paddingBottom="8dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="20"
-            app:endIconDrawable="@drawable/ic_wikipedia"
-            app:endIconMode="custom"
-            app:helperText="@string/wiki_helper_text"
-            app:helperTextEnabled="true"
-            app:layout_anchor="@id/chip_group"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chip_group">
+            app:layout_constraintTop_toBottomOf="@id/inputLayout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_hd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/get_hd"
+                android:minWidth="40dp"
+                android:minHeight="32dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="8dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="8dp"
+                android:text="@string/hd" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.chip.ChipGroup>
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -131,8 +157,7 @@
             app:layout_anchor="@id/inputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputLayout" />
-
+            app:layout_constraintTop_toBottomOf="@id/chip_group" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

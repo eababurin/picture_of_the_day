@@ -19,12 +19,6 @@ class PictureOfTheDayViewModel(
         return liveData
     }
 
-    fun sendRequest() {
-        liveData.postValue(AppState.Loading)
-        repositoryImpl.getPictureOfTheDayApi().getPictureOfTheDay(BuildConfig.NASA_API_KEY)
-            .enqueue(callback)
-    }
-
     fun sendRequestByDate(date: String) {
         liveData.postValue(AppState.Loading)
         repositoryImpl.getPictureOfTheDayApi()

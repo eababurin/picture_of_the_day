@@ -45,7 +45,9 @@ class PictureOfTheDayFragment : Fragment() {
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
 
         viewModel.getLiveData().observe(viewLifecycleOwner) { appState -> renderData(appState) }
-        viewModel.sendRequest()
+
+        viewModel.sendRequestByDate(requireDate((0)))
+        binding.chipToday.isChecked = true
 
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
@@ -72,7 +74,7 @@ class PictureOfTheDayFragment : Fragment() {
         })
 
         binding.chipToday.setOnClickListener {
-            viewModel.sendRequest()
+            viewModel.sendRequestByDate(requireDate((0)))
         }
 
         binding.chipYesterday.setOnClickListener {
@@ -81,6 +83,20 @@ class PictureOfTheDayFragment : Fragment() {
 
         binding.chipBeforeYesterday.setOnClickListener {
             viewModel.sendRequestByDate(requireDate((-2)))
+        }
+
+        binding.chipHd.setOnClickListener {
+            when (binding.chipGroup.checkedChipId) {
+                binding.chipToday.id -> {
+                    viewModel.sendRequestByDate(requireDate(0))
+                }
+                binding.chipYesterday.id -> {
+                    viewModel.sendRequestByDate(requireDate(-1))
+                }
+                binding.chipBeforeYesterday.id -> {
+                    viewModel.sendRequestByDate(requireDate(-2))
+                }
+            }
         }
 
         binding.inputLayout.setEndIconOnClickListener {
@@ -111,7 +127,13 @@ class PictureOfTheDayFragment : Fragment() {
             is AppState.Success -> {
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.imageView.visibility = View.VISIBLE
-                binding.imageView.load(appState.pictureOfTheDayResponseData.url)
+
+                if (binding.chipHd.isChecked) {
+                    binding.imageView.load(appState.pictureOfTheDayResponseData.url)
+                } else {
+                    binding.imageView.load(appState.pictureOfTheDayResponseData.hdurl)
+                }
+
                 requireView().findViewById<TextView>(R.id.bottom_sheet_description_header).text =
                     appState.pictureOfTheDayResponseData.title
                 requireView().findViewById<TextView>(R.id.bottom_sheet_description).text =

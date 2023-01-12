@@ -6,6 +6,8 @@
     <string name="favourite">Избранное</string>
     <string name="settings">Настройки</string>
     <string name="search">Поиск</string>
+    <string name="hd">HD</string>
+    <string name="get_hd">Получить изображение в HD качестве</string>
     <string name="today">Сегодня</string>
     <string name="yesterday">Вчера</string>
     <string name="day_before_yesterday">Позавчера</string>
