@@ -1,16 +1,11 @@
 package ru.eababurin.pictureoftheday.viewmodel
 
-import android.app.Application
-import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.eababurin.pictureoftheday.App
 import ru.eababurin.pictureoftheday.BuildConfig
-import ru.eababurin.pictureoftheday.MainActivity
 import ru.eababurin.pictureoftheday.R
 import ru.eababurin.pictureoftheday.model.PictureOfTheDayResponseData
 import ru.eababurin.pictureoftheday.model.RepositoryImpl

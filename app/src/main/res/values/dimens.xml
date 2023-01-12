@@ -13,4 +13,5 @@
 
     <dimen name="view_width">25dp</dimen>
     <dimen name="view_height">1dp</dimen>
+    <dimen name="navigation_view_margin">8dp</dimen>
 </resources>

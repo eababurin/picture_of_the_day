@@ -18,4 +18,10 @@
     <string name="open_day_before_yesterdays_image">Открыть позавчерашнее изображение</string>
     <string name="title_to_the_description_of_the_photo">Заголовок к описанию фотографии</string>
     <string name="description_of_the_photo">Описание фотографии</string>
+    <string name="show_image_description">Показать описание изображения</string>
+    <string name="hide_image_description">Скрыть описание изображения</string>
+    <string name="item_1">Пункт 1</string>
+    <string name="item_2">Пункт 2</string>
+    <string name="item_3">Пункт 3</string>
+    <string name="add_content">Добавить контент</string>
 </resources>
