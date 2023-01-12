@@ -15,6 +15,9 @@ import coil.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.eababurin.pictureoftheday.R
 import ru.eababurin.pictureoftheday.databinding.FragmentPictureBinding
+import ru.eababurin.pictureoftheday.utils.BEFORE_YESTERDAY
+import ru.eababurin.pictureoftheday.utils.TODAY
+import ru.eababurin.pictureoftheday.utils.YESTERDAY
 import ru.eababurin.pictureoftheday.viewmodel.AppState
 import ru.eababurin.pictureoftheday.viewmodel.PictureOfTheDayViewModel
 import java.text.SimpleDateFormat
@@ -74,27 +77,27 @@ class PictureOfTheDayFragment : Fragment() {
         })
 
         binding.chipToday.setOnClickListener {
-            viewModel.sendRequestByDate(requireDate((0)))
+            viewModel.sendRequestByDate(requireDate((TODAY)))
         }
 
         binding.chipYesterday.setOnClickListener {
-            viewModel.sendRequestByDate(requireDate((-1)))
+            viewModel.sendRequestByDate(requireDate((YESTERDAY)))
         }
 
         binding.chipBeforeYesterday.setOnClickListener {
-            viewModel.sendRequestByDate(requireDate((-2)))
+            viewModel.sendRequestByDate(requireDate((BEFORE_YESTERDAY)))
         }
 
         binding.chipHd.setOnClickListener {
             when (binding.chipGroup.checkedChipId) {
                 binding.chipToday.id -> {
-                    viewModel.sendRequestByDate(requireDate(0))
+                    viewModel.sendRequestByDate(requireDate(TODAY))
                 }
                 binding.chipYesterday.id -> {
-                    viewModel.sendRequestByDate(requireDate(-1))
+                    viewModel.sendRequestByDate(requireDate(YESTERDAY))
                 }
                 binding.chipBeforeYesterday.id -> {
-                    viewModel.sendRequestByDate(requireDate(-2))
+                    viewModel.sendRequestByDate(requireDate(BEFORE_YESTERDAY))
                 }
             }
         }
