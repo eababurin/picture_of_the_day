@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -76,15 +77,28 @@ class PictureOfTheDayFragment : Fragment() {
                     true
                 }
                 R.id.app_bar_fab -> {
-                    Toast.makeText(requireActivity(), resources.getString(R.string.favourite), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireActivity(),
+                        resources.getString(R.string.favourite),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     true
                 }
                 R.id.app_bar_search -> {
-                    Toast.makeText(requireActivity(), resources.getString(R.string.search), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireActivity(),
+                        resources.getString(R.string.search),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     true
                 }
                 R.id.app_bar_settings -> {
-                    Toast.makeText(requireActivity(), resources.getString(R.string.settings), Toast.LENGTH_SHORT).show()
+                    requireActivity().supportFragmentManager
+                        .beginTransaction()
+                        .add(R.id.container, SettingsFragment.newInstance())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .addToBackStack("")
+                        .commit()
                     true
                 }
                 else -> false
@@ -149,7 +163,7 @@ class PictureOfTheDayFragment : Fragment() {
 
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse(WIKI_SEARCH_URL+binding.input.text.toString())
+                data = Uri.parse(WIKI_SEARCH_URL + binding.input.text.toString())
             })
         }
     }

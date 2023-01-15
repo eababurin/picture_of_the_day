@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settings_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:focusable="true"
+    tools:context=".view.SettingsFragment">
+
+    <TextView
+        android:id="@+id/settings_title"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/recommended_margin"
+        android:contentDescription="@string/app_theme"
+        android:minWidth="@dimen/recommended_min_width"
+        android:minHeight="@dimen/recommended_min_height"
+        android:paddingLeft="@dimen/recommended_padding_horizontal"
+        android:paddingTop="@dimen/recommended_padding_vertical"
+        android:paddingRight="@dimen/recommended_padding_horizontal"
+        android:paddingBottom="@dimen/recommended_padding_vertical"
+        android:text="@string/app_theme" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/recommended_margin"
+        android:padding="@dimen/recommended_padding_horizontal" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/recommended_margin"
+        android:minWidth="@dimen/recommended_min_width"
+        android:minHeight="@dimen/recommended_min_height"
+        android:padding="@dimen/recommended_padding_horizontal"
+        android:paddingLeft="@dimen/recommended_padding_horizontal"
+        android:paddingTop="@dimen/recommended_padding_vertical"
+        android:paddingRight="@dimen/recommended_padding_horizontal"
+        android:paddingBottom="@dimen/recommended_padding_vertical"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_theme_usual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/choose_a_regular_app_theme"
+            android:minWidth="@dimen/recommended_min_width"
+            android:minHeight="@dimen/recommended_min_height"
+            android:paddingLeft="@dimen/recommended_padding_horizontal"
+            android:paddingTop="@dimen/recommended_padding_vertical"
+            android:paddingRight="@dimen/recommended_padding_horizontal"
+            android:paddingBottom="@dimen/recommended_padding_vertical"
+            android:text="@string/usual_theme" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_theme_mars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/choose_a_mars_theme"
+            android:minWidth="@dimen/recommended_min_width"
+            android:minHeight="@dimen/recommended_min_height"
+            android:paddingLeft="@dimen/recommended_padding_horizontal"
+            android:paddingTop="@dimen/recommended_padding_vertical"
+            android:paddingRight="@dimen/recommended_padding_horizontal"
+            android:paddingBottom="@dimen/recommended_padding_vertical"
+            android:text="@string/mars" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_theme_space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/choose_a_space_theme"
+            android:minWidth="@dimen/recommended_min_width"
+            android:minHeight="@dimen/recommended_min_height"
+            android:paddingLeft="@dimen/recommended_padding_horizontal"
+            android:paddingTop="@dimen/recommended_padding_vertical"
+            android:paddingRight="@dimen/recommended_padding_horizontal"
+            android:paddingBottom="@dimen/recommended_padding_vertical"
+            android:text="@string/space" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+</LinearLayout>
