@@ -24,4 +24,11 @@
     <string name="item_2">Пункт 2</string>
     <string name="item_3">Пункт 3</string>
     <string name="add_content">Добавить контент</string>
+    <string name="app_theme">Тема приложения</string>
+    <string name="choose_a_regular_app_theme">Выбрать обычную тему приложения</string>
+    <string name="usual_theme">Обычная тема</string>
+    <string name="choose_a_mars_theme">Выбрать тему приложения Марс</string>
+    <string name="choose_a_space_theme">Выбрать тему приложения Космос</string>
+    <string name="mars">Марс</string>
+    <string name="space">Космос</string>
 </resources>

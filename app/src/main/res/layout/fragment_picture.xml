@@ -169,10 +169,8 @@
         android:layout_height="wrap_content"
         app:hideOnScroll="true"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/colorPrimary"
         app:fabAlignmentMode="center"
         app:menu="@menu/bottom_app_bar_menu"
-        app:navigationIconTint="@color/white"
         app:navigationIcon="@drawable/ic_baseline_menu_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
