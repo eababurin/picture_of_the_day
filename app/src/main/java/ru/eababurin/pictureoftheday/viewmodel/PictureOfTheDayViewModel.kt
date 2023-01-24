@@ -34,7 +34,7 @@ class PictureOfTheDayViewModel(
             if (response.isSuccessful) {
                 liveData.postValue(AppState.Success(response.body()!!))
             } else {
-                liveData.postValue(AppState.Error(throw IllegalStateException(R.string.error.toString())))
+                liveData.postValue(AppState.Error("Не удалось загрузить изображение"))
 
             }
         }

@@ -190,7 +190,7 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.imageView.setImageResource(R.drawable.ic_no_image)
                 Toast.makeText(
                     requireActivity(),
-                    appState.error.message.toString(),
+                    appState.error,
                     Toast.LENGTH_SHORT
                 ).show()
             }
