@@ -1,12 +1,21 @@
 package ru.eababurin.pictureoftheday.view
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
+import android.provider.FontsContract
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.provider.FontRequest
+import androidx.core.provider.FontsContractCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +35,8 @@ import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
+    private val TAG = "PictureOfTheDayFragment"
+
     private var _binding: FragmentPictureBinding? = null
     private val binding get() = _binding!!
     private val viewModel: PictureOfTheDayViewModel by lazy {
@@ -44,6 +55,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -188,11 +200,7 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.imageView.visibility = View.VISIBLE
                 binding.imageView.setImageResource(R.drawable.ic_no_image)
-                Toast.makeText(
-                    requireActivity(),
-                    appState.error,
-                    Toast.LENGTH_SHORT
-                ).show()
+                // Toast.makeText(requireActivity(), appState.error, Toast.LENGTH_SHORT).show()
             }
             is AppState.Success -> {
                 binding.progressBar.visibility = View.INVISIBLE
@@ -219,6 +227,50 @@ class PictureOfTheDayFragment : Fragment() {
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
+        val request = FontRequest(
+            "com.google.android.gms.fonts",
+            "com.google.android.gms",
+            "Orbitron",
+            R.array.com_google_android_gms_fonts_certs
+        )
+
+        val callback = object : FontsContractCompat.FontRequestCallback() {
+            override fun onTypefaceRetrieved(typeface: Typeface?) {
+                super.onTypefaceRetrieved(typeface)
+                requireView().findViewById<TextView>(R.id.bottom_sheet_description).typeface =
+                    typeface
+            }
+
+            override fun onTypefaceRequestFailed(reason: Int) {
+                super.onTypefaceRequestFailed(reason)
+                when (reason) {
+                    FAIL_REASON_FONT_LOAD_ERROR -> {
+                        Log.d(TAG, "Ошибка загрузки шрифта")
+                    }
+                    FAIL_REASON_FONT_NOT_FOUND -> {
+                        Log.d(TAG, "Шрифт не найден")
+                    }
+                    FAIL_REASON_FONT_UNAVAILABLE -> {
+                        Log.d(TAG, "Шрифт недоступен")
+                    }
+                    FAIL_REASON_MALFORMED_QUERY -> {
+                        Log.d(TAG, "Запрос не поддержан поставщиком шрифтов")
+                    }
+                    FAIL_REASON_PROVIDER_NOT_FOUND -> {
+                        Log.d(TAG, "Поставщик шрифтов не найден")
+                    }
+                    FAIL_REASON_WRONG_CERTIFICATES -> {
+                        Log.d(TAG, "Сертификат не соответсвует подписи")
+                    }
+                    else -> {
+                        Log.d(TAG, "Неизвестная ошибка")
+                    }
+                }
+            }
+        }
+
+        FontsContractCompat.requestFont(requireContext(), request, callback, Handler())
     }
 
     override fun onDestroyView() {
