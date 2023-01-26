@@ -148,17 +148,17 @@ class PictureOfTheDayFragment : Fragment() {
         })
 
         binding.chipToday.setOnClickListener {
-            binding.chipToday.isChecked = true
+//            binding.chipToday.isChecked = true
             viewModel.sendRequest(requireDate((TODAY)))
         }
 
         binding.chipYesterday.setOnClickListener {
-            binding.chipYesterday.isChecked = true
+//            binding.chipYesterday.isChecked = true
             viewModel.sendRequest(requireDate((YESTERDAY)))
         }
 
         binding.chipBeforeYesterday.setOnClickListener {
-            binding.chipBeforeYesterday.isChecked = true
+//            binding.chipBeforeYesterday.isChecked = true
             viewModel.sendRequest(requireDate((BEFORE_YESTERDAY)))
         }
 

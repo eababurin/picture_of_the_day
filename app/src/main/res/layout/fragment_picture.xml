@@ -46,6 +46,8 @@
             android:minWidth="@dimen/recommended_min_width"
             android:minHeight="@dimen/recommended_min_height"
             android:paddingLeft="@dimen/recommended_padding_horizontal"
+            app:selectionRequired="true"
+            app:checkedChip="@id/chip_today"
             android:paddingTop="@dimen/recommended_padding_vertical"
             android:paddingRight="@dimen/recommended_padding_horizontal"
             android:paddingBottom="@dimen/recommended_padding_vertical"
