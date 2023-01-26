@@ -46,13 +46,13 @@
             android:minWidth="@dimen/recommended_min_width"
             android:minHeight="@dimen/recommended_min_height"
             android:paddingLeft="@dimen/recommended_padding_horizontal"
-            app:selectionRequired="true"
-            app:checkedChip="@id/chip_today"
             android:paddingTop="@dimen/recommended_padding_vertical"
             android:paddingRight="@dimen/recommended_padding_horizontal"
             android:paddingBottom="@dimen/recommended_padding_vertical"
+            app:checkedChip="@id/chip_today"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayout"
+            app:selectionRequired="true"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
@@ -169,9 +169,9 @@
         android:id="@+id/bottom_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hideOnScroll="true"
         android:layout_gravity="bottom"
         app:fabAlignmentMode="center"
+        app:hideOnScroll="true"
         app:menu="@menu/bottom_app_bar_menu"
         app:navigationIcon="@drawable/ic_baseline_menu_24" />
 
@@ -179,8 +179,8 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/add_content"
         android:src="@drawable/ic_baseline_add_24"
-        app:layout_anchor="@id/bottom_app_bar"
-        android:contentDescription="@string/add_content" />
+        app:layout_anchor="@id/bottom_app_bar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
