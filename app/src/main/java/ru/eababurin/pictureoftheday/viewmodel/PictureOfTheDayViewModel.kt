@@ -6,7 +6,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.eababurin.pictureoftheday.BuildConfig
-import ru.eababurin.pictureoftheday.R
 import ru.eababurin.pictureoftheday.model.PictureOfTheDayResponseData
 import ru.eababurin.pictureoftheday.model.RepositoryImpl
 

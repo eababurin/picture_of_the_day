@@ -6,14 +6,14 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.os.HandlerThread
-import android.provider.FontsContract
+import android.os.Looper
 import android.util.Log
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.provider.FontRequest
 import androidx.core.provider.FontsContractCompat
 import androidx.fragment.app.Fragment
@@ -33,15 +33,17 @@ import ru.eababurin.pictureoftheday.viewmodel.PictureOfTheDayViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PictureOfTheDayFragment : Fragment() {
+private const val TAG = "PictureOfTheDayFragment"
 
-    private val TAG = "PictureOfTheDayFragment"
+class PictureOfTheDayFragment : Fragment() {
 
     private var _binding: FragmentPictureBinding? = null
     private val binding get() = _binding!!
+
     private val viewModel: PictureOfTheDayViewModel by lazy {
         ViewModelProvider(this)[PictureOfTheDayViewModel::class.java]
     }
+
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var bottomAppBar: BottomAppBar
 
@@ -49,10 +51,8 @@ class PictureOfTheDayFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentPictureBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -60,84 +60,93 @@ class PictureOfTheDayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-        bottomAppBar = binding.bottomAppBar
+        bottomAppBar = binding.bottomAppBar.apply {
 
-        bottomAppBar.setNavigationOnClickListener {
-            val bottomNavigationDrawerFragment = BottomNavigationDrawerFragment()
-            bottomNavigationDrawerFragment.show(
-                requireFragmentManager(),
-                bottomNavigationDrawerFragment.tag
-            )
-        }
-
-        bottomAppBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.app_bar_arrow -> {
-                    if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
-                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                        with(it) {
-                            icon = resources.getDrawable(R.drawable.ic_baseline_arrow_up_24)
-                            title = resources.getString(R.string.show_image_description)
-                        }
-                    } else {
-                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                        with(it) {
-                            icon = resources.getDrawable(R.drawable.ic_baseline_arrow_down_24)
-                            title = resources.getString(R.string.hide_image_description)
-                        }
-                    }
-                    true
-                }
-                R.id.app_bar_fab -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        resources.getString(R.string.favourite),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    true
-                }
-                R.id.app_bar_search -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        resources.getString(R.string.search),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    true
-                }
-                R.id.app_bar_settings -> {
-                    requireActivity().supportFragmentManager
-                        .beginTransaction()
-                        .add(R.id.container, SettingsFragment.newInstance())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .addToBackStack("")
-                        .commit()
-                    true
-                }
-                else -> false
+            setNavigationOnClickListener {  // меню drawer
+                val bottomNavigationDrawerFragment = BottomNavigationDrawerFragment()
+                bottomNavigationDrawerFragment.show(
+                    parentFragmentManager,
+                    bottomNavigationDrawerFragment.tag
+                )
             }
 
+            setOnMenuItemClickListener {    // меню bottomappbar
+                when (it.itemId) {
+                    R.id.app_bar_arrow -> {
+                        if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+                            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                            with(it) {
+                                icon = ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_baseline_arrow_up_24
+                                )
+//                                icon = resources.getDrawable(R.drawable.ic_baseline_arrow_up_24, null)
+                                title = resources.getString(R.string.show_image_description)
+                            }
+                        } else {
+                            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                            with(it) {
+                                icon = ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_baseline_arrow_down_24
+                                )
+//                                icon = resources.getDrawable(R.drawable.ic_baseline_arrow_down_24, null)
+                                title = resources.getString(R.string.hide_image_description)
+                            }
+                        }
+                        true
+                    }
+                    R.id.app_bar_fab -> {
+                        Toast.makeText(
+                            requireActivity(),
+                            resources.getString(R.string.favourite),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        true
+                    }
+                    R.id.app_bar_search -> {
+                        Toast.makeText(
+                            requireActivity(),
+                            resources.getString(R.string.search),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        true
+                    }
+                    R.id.app_bar_settings -> {
+                        requireActivity().supportFragmentManager
+                            .beginTransaction()
+                            .add(R.id.container, SettingsFragment.newInstance())
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                            .addToBackStack("")
+                            .commit()
+                        true
+                    }
+                    else -> false
+                }
+            }
         }
-
-        viewModel.getLiveData().observe(viewLifecycleOwner) { appState -> renderData(appState) }
-
-        viewModel.sendRequest(requireDate((0)))
-        binding.chipToday.isChecked = true
 
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
-                    BottomSheetBehavior.STATE_DRAGGING -> { /*TODO("Not yet implemented")*/
+                    BottomSheetBehavior.STATE_DRAGGING -> {
+                        /*TODO("Not yet implemented")*/
                     }
-                    BottomSheetBehavior.STATE_COLLAPSED -> { /*TODO("Not yet implemented")*/
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+                        /*TODO("Not yet implemented")*/
                     }
-                    BottomSheetBehavior.STATE_EXPANDED -> { /*TODO("Not yet implemented")*/
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+                        /*TODO("Not yet implemented")*/
                     }
-                    BottomSheetBehavior.STATE_HALF_EXPANDED -> { /*TODO("Not yet implemented")*/
+                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                        /*TODO("Not yet implemented")*/
                     }
-                    BottomSheetBehavior.STATE_HIDDEN -> { /*TODO("Not yet implemented")*/
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+                        /*TODO("Not yet implemented")*/
                     }
-                    BottomSheetBehavior.STATE_SETTLING -> { /*TODO("Not yet implemented")*/
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                        /*TODO("Not yet implemented")*/
                     }
                 }
             }
@@ -147,18 +156,19 @@ class PictureOfTheDayFragment : Fragment() {
             }
         })
 
+        binding.fab.setOnClickListener {
+            Toast.makeText(requireContext(), R.string.not_implemented, Toast.LENGTH_SHORT).show()
+        }
+
         binding.chipToday.setOnClickListener {
-//            binding.chipToday.isChecked = true
             viewModel.sendRequest(requireDate((TODAY)))
         }
 
         binding.chipYesterday.setOnClickListener {
-//            binding.chipYesterday.isChecked = true
             viewModel.sendRequest(requireDate((YESTERDAY)))
         }
 
         binding.chipBeforeYesterday.setOnClickListener {
-//            binding.chipBeforeYesterday.isChecked = true
             viewModel.sendRequest(requireDate((BEFORE_YESTERDAY)))
         }
 
@@ -181,6 +191,10 @@ class PictureOfTheDayFragment : Fragment() {
                 data = Uri.parse(WIKI_SEARCH_URL + binding.input.text.toString())
             })
         }
+
+        viewModel.getLiveData().observe(viewLifecycleOwner) { appState -> renderData(appState) }
+        viewModel.sendRequest(requireDate((0)))
+        binding.chipToday.isChecked = true
     }
 
     private fun requireDate(offset: Int): String {
@@ -189,18 +203,12 @@ class PictureOfTheDayFragment : Fragment() {
         return SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.time).toString()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.bottom_app_bar_menu, menu)
-    }
-
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Error -> {
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.imageView.visibility = View.VISIBLE
                 binding.imageView.setImageResource(R.drawable.ic_no_image)
-                // Toast.makeText(requireActivity(), appState.error, Toast.LENGTH_SHORT).show()
             }
             is AppState.Success -> {
                 binding.progressBar.visibility = View.INVISIBLE
@@ -269,8 +277,12 @@ class PictureOfTheDayFragment : Fragment() {
                 }
             }
         }
-
-        FontsContractCompat.requestFont(requireContext(), request, callback, Handler())
+        FontsContractCompat.requestFont(
+            requireContext(),
+            request,
+            callback,
+            Handler(Looper.getMainLooper())
+        )
     }
 
     override fun onDestroyView() {
