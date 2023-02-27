@@ -5,8 +5,8 @@
     android:id="@+id/settings_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
     android:background="?layoutBackgroundColor"
+    android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
     tools:context=".view.SettingsFragment">
@@ -48,6 +48,7 @@
             android:paddingTop="@dimen/recommended_padding_vertical"
             android:paddingRight="@dimen/recommended_padding_horizontal"
             android:paddingBottom="@dimen/recommended_padding_vertical"
+            app:checkedChip="@id/chip_theme_usual"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
@@ -96,11 +97,11 @@
         android:id="@+id/bottom_app_bar_on_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menuAlignmentMode="auto"
         android:layout_gravity="bottom"
         app:fabAlignmentMode="center"
         app:hideOnScroll="true"
         app:menu="@menu/bottom_app_bar_menu_settings_fragment"
+        app:menuAlignmentMode="auto"
         app:navigationIcon="@drawable/ic_baseline_menu_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
