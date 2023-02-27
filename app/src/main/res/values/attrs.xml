@@ -2,4 +2,7 @@
 <resources>
     <attr name="iconColor" format="color|reference" />
     <attr name="layoutBackgroundColor" format="color|reference" />
+
+    <attr name="color_200" format="color|reference" />
+    <attr name="color_800" format="color|reference" />
 </resources>

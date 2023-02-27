@@ -15,4 +15,10 @@
 
     <color name="mars_color">#800000</color>
     <color name="space_color">#4f0070</color>
+    
+    <color name="red_800">#c62828</color>
+    <color name="red_200">#ef9a9a</color>
+
+    <color name="indigo_800">#283593</color>
+    <color name="indigo_200">#9fa8da</color>
 </resources>

@@ -20,6 +20,9 @@
         <item name="chipStyle">@style/Chip.Mars</item>
         <item name="textInputStyle">@style/EditText.Mars</item>
 
+        <item name="color_200">@color/red_200</item>
+        <item name="color_800">@color/red_800</item>
+
         <item name="layoutBackgroundColor">@color/white</item>
         <item name="iconColor">@color/white</item>
     </style>
@@ -30,6 +33,9 @@
         <item name="chipGroupStyle">@style/ChipGroup.Space</item>
         <item name="chipStyle">@style/Chip.Space</item>
         <item name="textInputStyle">@style/EditText.Space</item>
+
+        <item name="color_200">@color/indigo_200</item>
+        <item name="color_800">@color/indigo_800</item>
 
         <item name="layoutBackgroundColor">@color/white</item>
         <item name="iconColor">@color/white</item>
