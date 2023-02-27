@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextView.Main" parent="Widget.MaterialComponents.TextView" />
+    <style name="BottomAppBar.Main" parent="Widget.MaterialComponents.BottomAppBar" />
+    <style name="ChipGroup.Main" parent="Widget.MaterialComponents.ChipGroup" />
+    <style name="Chip.Main" parent="Widget.MaterialComponents.Chip.Action" />
+    <style name="EditText.Main" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox" />
+
+    <style name="TextView.Mars" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/mars_color</item>
+    </style>
+    <style name="BottomAppBar.Mars" parent="Widget.MaterialComponents.BottomAppBar">
+        <item name="android:textColor">@color/mars_color</item>
+        <item name="android:backgroundTint">@color/mars_color</item>
+        <item name="android:buttonTint">@color/mars_color</item>
+    </style>
+    <style name="ChipGroup.Mars" parent="Widget.MaterialComponents.ChipGroup">
+        <item name="android:textColor">@color/mars_color</item>
+    </style>
+    <style name="Chip.Mars" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="android:textColor">@color/mars_color</item>
+    </style>
+    <style name="EditText.Mars" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox">
+        <item name="android:textColor">@color/mars_color</item>
+    </style>
+
+    <style name="TextView.Space" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/space_color</item>
+    </style>
+    <style name="BottomAppBar.Space" parent="Widget.MaterialComponents.BottomAppBar">
+        <item name="android:textColor">@color/space_color</item>
+        <item name="android:backgroundTint">@color/space_color</item>
+        <item name="android:buttonTint">@color/space_color</item>
+    </style>
+    <style name="ChipGroup.Space" parent="Widget.MaterialComponents.ChipGroup">
+        <item name="android:textColor">@color/space_color</item>
+    </style>
+    <style name="Chip.Space" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="android:textColor">@color/space_color</item>
+    </style>
+    <style name="EditText.Space" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox">
+        <item name="android:textColor">@color/space_color</item>
+    </style>
+</resources>

@@ -1,9 +1,38 @@
 <resources>
-    <style name="Theme.PictureOfTheDay" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#ff00ff</item>
-        <item name="colorAccent">#00ff00</item>
-        <item name="android:textColorTertiary">#ff0000</item>
-        <item name="colorOnSurface">#0000ff</item>
 
+    <style name="Base.Theme.PictureOfTheDay" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.PictureOfTheDay" parent="Base.Theme.PictureOfTheDay">
+        <item name="android:textViewStyle">@style/TextView.Main</item>
+        <item name="bottomAppBarStyle">@style/BottomAppBar.Main</item>
+        <item name="chipGroupStyle">@style/ChipGroup.Main</item>
+        <item name="chipStyle">@style/Chip.Main</item>
+        <item name="textInputStyle">@style/EditText.Main</item>
+
+        <item name="layoutBackgroundColor">@color/white</item>
+        <item name="iconColor">@color/colorPrimary</item>
     </style>
+
+    <style name="Theme.PictureOfTheDay.Mars">
+        <item name="android:textViewStyle">@style/TextView.Mars</item>
+        <item name="bottomAppBarStyle">@style/BottomAppBar.Mars</item>
+        <item name="chipGroupStyle">@style/ChipGroup.Mars</item>
+        <item name="chipStyle">@style/Chip.Mars</item>
+        <item name="textInputStyle">@style/EditText.Mars</item>
+
+        <item name="layoutBackgroundColor">@color/white</item>
+        <item name="iconColor">@color/white</item>
+    </style>
+
+    <style name="Theme.PictureOfTheDay.Space">
+        <item name="android:textViewStyle">@style/TextView.Space</item>
+        <item name="bottomAppBarStyle">@style/BottomAppBar.Space</item>
+        <item name="chipGroupStyle">@style/ChipGroup.Space</item>
+        <item name="chipStyle">@style/Chip.Space</item>
+        <item name="textInputStyle">@style/EditText.Space</item>
+
+        <item name="layoutBackgroundColor">@color/white</item>
+        <item name="iconColor">@color/white</item>
+    </style>
+
 </resources>

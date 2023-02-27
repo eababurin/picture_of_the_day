@@ -8,7 +8,11 @@
     <color name="color_gray">#66000000</color>
     <color name="colorPrimary">#FF6200EE</color>
     <color name="colorAccent">#FF03DAC5</color>
+    <color name="color_red">#FF0000</color>
 
     <color name="bottom_sheet_background_color">#f6f6fa</color>
     <color name="view_background_color">#663b4351</color>
+
+    <color name="mars_color">#800000</color>
+    <color name="space_color">#4f0070</color>
 </resources>
