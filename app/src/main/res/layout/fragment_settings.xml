@@ -48,7 +48,6 @@
             android:paddingTop="@dimen/recommended_padding_vertical"
             android:paddingRight="@dimen/recommended_padding_horizontal"
             android:paddingBottom="@dimen/recommended_padding_vertical"
-            app:checkedChip="@id/chip_theme_usual"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip

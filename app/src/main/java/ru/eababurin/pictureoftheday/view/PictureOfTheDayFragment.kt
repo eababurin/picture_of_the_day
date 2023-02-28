@@ -115,7 +115,7 @@ class PictureOfTheDayFragment : Fragment() {
                     R.id.app_bar_settings -> {
                         requireActivity().supportFragmentManager
                             .beginTransaction()
-                            .add(R.id.container, SettingsFragment.newInstance())
+                            .replace(R.id.container, SettingsFragment.newInstance())
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .addToBackStack("")
                             .commit()

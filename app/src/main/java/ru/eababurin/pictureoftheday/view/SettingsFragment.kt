@@ -30,6 +30,18 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        when(requireActivity().getPreferences(MODE_PRIVATE).getInt(THEME, R.style.Theme_PictureOfTheDay)) {
+            R.style.Theme_PictureOfTheDay -> {
+                binding.chipThemeUsual.isChecked = true
+            }
+            R.style.Theme_PictureOfTheDay_Space -> {
+                binding.chipThemeSpace.isChecked = true
+            }
+            R.style.Theme_PictureOfTheDay_Mars -> {
+                binding.chipThemeMars.isChecked = true
+            }
+        }
+
         bottomAppBar = binding.bottomAppBarOnSettings.apply {
             setNavigationOnClickListener {
                 val bottomNavigationDrawerFragment = BottomNavigationDrawerFragment()
