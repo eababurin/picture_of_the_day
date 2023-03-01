@@ -28,6 +28,7 @@ import ru.eababurin.pictureoftheday.utils.BEFORE_YESTERDAY
 import ru.eababurin.pictureoftheday.utils.TODAY
 import ru.eababurin.pictureoftheday.utils.WIKI_SEARCH_URL
 import ru.eababurin.pictureoftheday.utils.YESTERDAY
+import ru.eababurin.pictureoftheday.view.navigation.FavoritesFragment
 import ru.eababurin.pictureoftheday.viewmodel.AppState
 import ru.eababurin.pictureoftheday.viewmodel.PictureOfTheDayViewModel
 import java.text.SimpleDateFormat
@@ -96,12 +97,12 @@ class PictureOfTheDayFragment : Fragment() {
                         }
                         true
                     }
-                    R.id.app_bar_fab -> {
-                        Toast.makeText(
-                            requireActivity(),
-                            resources.getString(R.string.favourite),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    R.id.app_bar_fav -> {
+                        requireActivity().supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.container, FavoritesFragment.newInstance())
+                            .addToBackStack("")
+                            .commit()
                         true
                     }
                     R.id.app_bar_search -> {

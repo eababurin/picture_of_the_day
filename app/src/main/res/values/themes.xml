@@ -9,6 +9,9 @@
         <item name="chipStyle">@style/Chip.Main</item>
         <item name="textInputStyle">@style/EditText.Main</item>
 
+        <item name="color_200">@color/colorPrimary</item>
+        <item name="color_800">@color/colorAccent</item>
+
         <item name="layoutBackgroundColor">@color/white</item>
         <item name="iconColor">@color/colorPrimary</item>
     </style>
