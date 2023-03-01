@@ -5,7 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import ru.eababurin.pictureoftheday.databinding.FragmentFavoritesBinding
+import ru.eababurin.pictureoftheday.utils.EARTH
+import ru.eababurin.pictureoftheday.utils.MARS
+import ru.eababurin.pictureoftheday.utils.SOLAR_SYSTEM
 
 class FavoritesFragment : Fragment() {
 
@@ -23,8 +28,20 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewPager.adapter = ViewPagerAdapter(childFragmentManager)
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.viewPager.adapter = ViewPager2Adapter(requireActivity())
+
+        TabLayoutMediator(
+            binding.tabLayout,
+            binding.viewPager,
+            object : TabLayoutMediator.TabConfigurationStrategy {
+                override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
+                    tab.text = when (position) {
+                        0 -> EARTH
+                        1 -> MARS
+                        else -> SOLAR_SYSTEM
+                    }
+                }
+            }).attach()
     }
 
     companion object {
