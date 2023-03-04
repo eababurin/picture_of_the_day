@@ -8,7 +8,3 @@ const val THEME = "THEME"
 
 const val API_NASA_URL = "https://api.nasa.gov/"
 const val WIKI_SEARCH_URL = "https://en.wikipedia.org/wiki/"
-
-const val EARTH = "Земля"
-const val MARS = "Марс"
-const val SOLAR_SYSTEM = "Система"

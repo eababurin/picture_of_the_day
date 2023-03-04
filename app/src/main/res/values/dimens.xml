@@ -10,7 +10,7 @@
     <dimen name="recommended_margin">8dp</dimen>
     <dimen name="text_padding_horizontal">10dp</dimen>
 
-    <dimen name="height_of_the_visible_bottom_sheet">50dp</dimen>
+    <dimen name="height_of_the_visible_bottom_sheet">80dp</dimen>
 
     <dimen name="view_width">25dp</dimen>
     <dimen name="view_height">1dp</dimen>

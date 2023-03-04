@@ -2,13 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bottom_view_earth"
-        android:title="Earth" />
+        android:icon="@drawable/icon_earth"
+        android:title="@string/earth" />
 
     <item
         android:id="@+id/bottom_view_mars"
-        android:title="Mars" />
+        android:icon="@drawable/icon_mars"
+        android:title="@string/mars" />
 
     <item
         android:id="@+id/bottom_view_system"
-        android:title="Weather" />
+        android:icon="@drawable/icon_solar_system"
+        android:title="@string/solar_system" />
+
+    <item
+        android:id="@+id/bottom_view_settings"
+        android:icon="@drawable/icon_settings"
+        android:title="@string/settings" />
 </menu>
