@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Фотография дня</string>
+    <string name="search_wiki">Найти в Википедии</string>
+    <string name="wiki_helper_text">Поищите термин в Википедии</string>
+    <string name="settings">Настройки</string>
+    <string name="today">Сегодня</string>
+    <string name="yesterday">Вчера</string>
+    <string name="day_before_yesterday">Позавчера</string>
+    <string name="app_theme">Тема приложения</string>
+    <string name="choose_a_regular_app_theme">Выбрать обычную тему приложения</string>
+    <string name="usual_theme">Обычная тема</string>
+    <string name="choose_a_mars_theme">Выбрать тему приложения Марс</string>
+    <string name="choose_a_space_theme">Выбрать тему приложения Космос</string>
+    <string name="mars">Марс</string>
+    <string name="earth">Земля</string>
+    <string name="space">Космос</string>
+    <string name="solar_system">Система</string>
+    <string name="not_implemented">Не реализовано</string>
+</resources>

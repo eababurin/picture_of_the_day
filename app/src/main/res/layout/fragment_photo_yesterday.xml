@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/image_view_margin"
-        android:contentDescription="@string/photo_of_the_day_stub"
+        android:contentDescription="@string/app_name"
         android:minWidth="@dimen/recommended_min_width"
         android:minHeight="@dimen/recommended_min_height"
         android:paddingLeft="@dimen/recommended_padding_horizontal"
